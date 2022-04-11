@@ -22,29 +22,46 @@ kitapTeslimIslemleri = [
     [pg.Cancel("İptal")]
 ]
 
-prog = pg.Window('Kütüphane Otomasyon Sistemi', anaEkran)
+prog = pg.Window('Kütüphane Otomasyon Sistemi', anaEkran, alpha_channel=1)
+#uye = pg.Window('Üye İşlemleri', uyeIslemleri)
+#ki = pg.Window('Kitap İşlemleri', kitapIslemleri)
+#kti = pg.Window('Kitap Teslim İşlemleri', kitapTeslimIslemleri)
+
+uye = pg.Window('Üye İşlemleri', [
+    [pg.Text('Üye İşlemleri...'), pg.Text("\n\n\n")],
+    [pg.Cancel("İptal")]
+])
+ki = pg.Window('Kitap İşlemleri', [
+    [pg.Text('Kitap İşlemleri...'), pg.Text("\n\n\n")],
+    [pg.Cancel("İptal")]
+])
+kti = pg.Window('Kitap Teslim İşlemleri', [
+    [pg.Text('Kitap Teslim İşlemleri...'), pg.Text("\n\n\n")],
+    [pg.Cancel("İptal")]
+])
 
 while True:
     event, values = prog.read()
+    event1, values1 = uye.read()
+    event2, values2 = ki.read()
+    event3, values3 = kti.read()
 
-    if event == pg.WINDOW_CLOSED or event == "Çıkış":
+    print("prog =" , event , values , "\nuye =" , event1 , values1 ,  "\nki = " , event2 , values2 , "\nddkti = " , event3 , values3)
+
+    if event == pg.WINDOW_CLOSED or event == "Quit":
         break
 
     if event == "Üye İşlemleri":
-        uye = pg.Window('Üye İşlemleri', uyeIslemleri,)
-        event1, values1 = uye.read()
+        uye.un_hide()
         if event1 == pg.WINDOW_CLOSED:
-            uye.Close()
+            uye.hide()
     
-
     if event == "Kitap İşlemleri":
-        uye = pg.Window('Kitap İşlemleri', kitapIslemleri)
-        event2, values2 = uye.read()
+        ki.un_hide()
         if event2 == pg.WINDOW_CLOSED:
-            kitapIslemleri.Close()
+            ki.hide()
 
     if event == "Kitap Teslim İşlemleri":
-        uye = pg.Window('Kitap Teslim İşlemleri', kitapTeslimIslemleri)
-        event3, values3 = uye.read()
+        kti.un_hide()
         if event3 == pg.WINDOW_CLOSED:
-            kitapTeslimIslemleri.Close()
+            kti.hide()
