@@ -1,67 +1,39 @@
 import PySimpleGUI as pg
 from funct import *
+from time import sleep
 pg.theme('dark grey 12')
 anaEkran = [
     [pg.Text('Kütüphane Otomasyon Sistemine Hoşgeldiniz ')],
-    [pg.Text('\n\n\n')],
-    [pg.Text('Lütfen Yapmak istediğiniz işlemi seçiniz !!')],
-    [pg.Button("Üye İşlemleri"), pg.Button("Kitap İşlemleri"), pg.Button("Kitap Teslim İşlemleri")],
-    [pg.Quit(button_text="Çıkış",button_color="red")]
+    [pg.Text('\n\n')],
+    [pg.Text('Üye Ekle')],
+    [pg.Text('No Girin:')],
+    [pg.InputText(do_not_clear=False)],
+    [pg.Text('İsim Girin:')],
+    [pg.InputText(do_not_clear=False)],
+    [pg.Button('Üye Ekle')],
+    [pg.Text('\n')],
+    [pg.Text('Üye Bilgi')],
+    [pg.Text('No Girin:')],
+    [pg.InputText(do_not_clear=False)],
+    [pg.Button('Bilgi Çek')],
+    [pg.Quit(button_text='Çıkış', button_color='red')]
 ]
 
-uyeIslemleri = [
-    [pg.Text('Üye İşlemleri...'), pg.Text("\n\n\n")],
-    [pg.Cancel("İptal")]
-]
-kitapIslemleri = [
-    [pg.Text('Kitap İşlemleri...'), pg.Text("\n\n\n")],
-    [pg.Cancel("İptal")]
-]
-kitapTeslimIslemleri = [
-    [pg.Text('Kitap Teslim İşlemleri...'), pg.Text("\n\n\n")],
-    [pg.Cancel("İptal")]
-]
 
-prog = pg.Window('Kütüphane Otomasyon Sistemi', anaEkran, alpha_channel=1)
-#uye = pg.Window('Üye İşlemleri', uyeIslemleri)
-#ki = pg.Window('Kitap İşlemleri', kitapIslemleri)
-#kti = pg.Window('Kitap Teslim İşlemleri', kitapTeslimIslemleri)
+prog = pg.Window('Kütüphane Otomasyon Sistemi', anaEkran,
+                 size=(1280, 1024), no_titlebar=True)
 
-uye = pg.Window('Üye İşlemleri', [
-    [pg.Text('Üye İşlemleri...'), pg.Text("\n\n\n")],
-    [pg.Cancel("İptal")]
-])
-ki = pg.Window('Kitap İşlemleri', [
-    [pg.Text('Kitap İşlemleri...'), pg.Text("\n\n\n")],
-    [pg.Cancel("İptal")]
-])
-kti = pg.Window('Kitap Teslim İşlemleri', [
-    [pg.Text('Kitap Teslim İşlemleri...'), pg.Text("\n\n\n")],
-    [pg.Cancel("İptal")]
-])
 
 while True:
     event, values = prog.read()
-    event1, values1 = uye.read()
-    event2, values2 = ki.read()
-    event3, values3 = kti.read()
 
-    print("prog =" , event , values , "\nuye =" , event1 , values1 ,  "\nki = " , event2 , values2 , "\nddkti = " , event3 , values3)
+    print('prog =', event, '\n' + str(values))
 
-    if event == pg.WINDOW_CLOSED or event == "Quit":
+    if event == pg.WINDOW_CLOSED or event == 'Quit' or event == 'Çıkış':
         break
-
-    if event == "Üye İşlemleri":
-        uye.un_hide()
-        if event1 == pg.WINDOW_CLOSED:
-            uye.hide()
-    
-    if event == "Kitap İşlemleri":
-        ki.un_hide()
-        if event2 == pg.WINDOW_CLOSED:
-            ki.hide()
-
-    if event == "Kitap Teslim İşlemleri":
-        kti.un_hide()
-        if event3 == pg.WINDOW_CLOSED:
-            kti.hide()
+    if event == 'Üye Ekle':
+        uye_ekle(values[0], values[1])
+    if event == 'Bilgi Çek':
+        #'Numara =', bilgi_cek(int(values[2]),'NUMARA') , '\nİsim =' , bilgi_cek(int(values[2]),'ISIM'), '\nÜyelik Tarihi =' , bilgi_cek(int(values[2]),'UYELIK_TARIHI') , '\nSon İşlem Tarihi =', bilgi_cek(int(values[2]),'SON_ISLEM_TARIHI') , '\nSon Alınan Kitap =' , bilgi_cek(int(values[2]),'SON_ALINAN_KITAP') , '\nSon Yapılan İşlem' , bilgi_cek(int(values[2]),'SON_YAPILAN_ISLEM')
+        pg.Popup('Numara =', bilgi_cek(int(values[2]), 'NUMARA'), '\nİsim =', bilgi_cek(int(values[2]), 'ISIM'), '\nÜyelik Tarihi =', bilgi_cek(int(values[2]), 'UYELIK_TARIHI'), '\nSon İşlem Tarihi =', bilgi_cek(int(
+            values[2]), 'SON_ISLEM_TARIHI'), '\nSon Alınan Kitap =', bilgi_cek(int(values[2]), 'SON_ALINAN_KITAP'), '\nSon Yapılan İşlem', bilgi_cek(int(values[2]), 'SON_YAPILAN_ISLEM'), no_titlebar=True, background_color="grey")
