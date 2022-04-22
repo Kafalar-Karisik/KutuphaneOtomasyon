@@ -163,8 +163,11 @@ def kitap_al(kitap_id, uye_id):
     #        uye_flag = True
     for indeks, i in enumerate(u_satirlar):
         u_satirlar[indeks] = i.split(',')
+    print(bilgi_cek(uye_id, "NUMARA") , str(uye_id) , bilgi_cek(uye_id, "SON_ALINAN_KITAP") , '--')
+    print(str(bilgi_cek(uye_id, "NUMARA") == str(uye_id)) ,",", str(bilgi_cek(uye_id, "SON_ALINAN_KITAP") == '--'))
     
-    if bilgi_cek(uye_id, "NUMARA") == str(uye_id) and bilgi_cek(uye_id, "SON_ALINAN_KITAP") == '--':
+    
+    if bilgi_cek(int(uye_id), "NUMARA") == str(uye_id) and bilgi_cek(int(uye_id), "SON_ALINAN_KITAP") == '--':
         uye_flag = True
 
     print(str(kitap_flag), str(uye_flag))
@@ -193,6 +196,7 @@ def kitap_al(kitap_id, uye_id):
     
     else:
         print("Kitap ya da Üye meşgul yahut bulunamadı!")
+        return "Kitap ya da Üye meşgul yahut bulunamadı!"
 
 
 def kitap_teslim_et(kitap_id, uye_id):
@@ -247,3 +251,4 @@ def kitap_teslim_et(kitap_id, uye_id):
     
     else:
         print("Kitap ya da Üye bilgilerinin doğruluğunu kontrol ediniz!") #değişiklik burada
+        return "Kitap ya da Üye bilgilerinin doğruluğunu kontrol ediniz!"

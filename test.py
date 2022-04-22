@@ -1,3 +1,3 @@
 from funct import *
 from time import sleep
-bilgi_cek()
+print(bilgi_cek("128", "SON_ALINAN_KITAP"))
