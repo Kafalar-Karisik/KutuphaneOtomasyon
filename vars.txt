@@ -1,0 +1,14 @@
+ID,ADI,YAZAR,SAYFA_SAYISI,YAYINEVI,ALAN_UYE
+'ID','ADI','YAZAR','SAYFA_SAYISI','YAYINEVI','ALAN_UYE'
+
+NUMARA,ISIM,UYELIK_TARIHI,SON_ISLEM_TARIHI,SON_ALINAN_KITAP,SON_YAPILAN_ISLEM
+'NUMARA','ISIM','UYELIK_TARIHI','SON_ISLEM_TARIHI','SON_ALINAN_KITAP','SON_YAPILAN_ISLEM'
+
+
+pg.Popup('ID =', kbilgi_cek(int(no), "ID"),
+                            'ADI', kbilgi_cek(int(no),"ADI"),
+                            'YAZAR', kbilgi_cek(int(no), "YAZAR"),
+                            'SAYFA SAYISI' , kbilgi_cek(int(no), "SAYFA_SAYISI"),
+                            'YAYINEVİ', kbilgi_cek(int(no), "YAYINEVİ"),
+                            'ALAN ÜYE', kbilgi_cek(int(no), "ALAN_UYE"),
+                            title=str(bilgi_cek(int(no), 'ISIM')))
